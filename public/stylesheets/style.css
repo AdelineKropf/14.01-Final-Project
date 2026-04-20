@@ -6,3 +6,25 @@ body {
 a {
   color: #00B7FF;
 }
+
+/* .company_title {
+  font-family: "Italianno", cursive;
+  font-weight: 400;
+  font-style: normal;
+} */
+
+.landing_page {
+  background-color: #FFFF;
+}
+
+.menu_page {
+  background-color: #FFFF;
+}
+
+.about_us_page {
+  background-color: #FFFF;
+}
+
+.customer_comments_page {
+  background-color: #FFFF;
+}

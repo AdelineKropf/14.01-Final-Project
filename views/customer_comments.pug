@@ -1,9 +1,13 @@
 extends layout
 
 block content
+  //- Source: https://www.geeksforgeeks.org/node-js/tags-in-pug-view-engine/
+  .customer_comments_page
+    h1.company_title= title
+    h2 Customer Comments
 
-  //- Creates the buttons to navigate to the other pages 
-  footer
-    button(type='button', class='goToMenu') Go to the Menu Page
-    button(type='button', class='goToAboutUs') Go to the About Us Page
-    button(type='button', class='goToLandingPage') Go to the Landing Page
+    //- Creates the buttons to navigate to the other pages 
+    footer
+      button(type='button', class='goToMenu') Go to the Menu Page
+      button(type='button', class='goToAboutUs') Go to the About Us Page
+      button(type='button', class='goToLandingPage') Go to the Landing Page
