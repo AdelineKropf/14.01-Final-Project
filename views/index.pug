@@ -4,7 +4,7 @@ block content
   h1= title
   p Welcome to #{title}
   ol
-  each val in todos
+  each val in comments
     li
       span= val.task + ' - '
       if val.completed > 0
