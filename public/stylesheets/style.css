@@ -1,9 +1,22 @@
+
+/* Created with help from Copilot */
 @font-face {
+  /* I got the font file from https://www.1001fonts.com/italianno-font.html */
   font-family: "Italianno";
   src: url("/fonts/Italianno-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
 }
+
+/* Created with help from Copilot */
+@font-face {
+  /* I got the font file from https://www.1001fonts.com/montserrat-font.html */
+  font-family: "Montserrat";
+  src: url("/fonts/Montserrat-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
 
 body {
   padding: 50px;
@@ -15,27 +28,33 @@ a {
 }
 
 p {
-  font-family:
+  font-family: "Montserrat", sans-serif;
 }
 
 .company_title {
   font-family: "Italianno", cursive;
-  font-weight: 400;
-  font-style: normal;
 }
 
 .landing_page {
   background-color: #FFFF;
+  font-family: "Montserrat", sans-serif;
 }
 
 .menu_page {
   background-color: #FFFF;
+  font-family: "Montserrat", sans-serif;
 }
 
 .about_us_page {
   background-color: #FFFF;
+  font-family: "Montserrat", sans-serif;
 }
 
 .customer_comments_page {
   background-color: #FFFF;
+  font-family: "Montserrat", sans-serif;
+}
+
+button {
+  font-family: "Montserrat", sans-serif;
 }
