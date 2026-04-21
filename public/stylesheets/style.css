@@ -20,7 +20,7 @@
 
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px "Montserrat", sans-serif;
 }
 
 a {
@@ -33,28 +33,40 @@ p {
 
 .company_title {
   font-family: "Italianno", cursive;
+  font-size: 250%;
 }
 
 .landing_page {
-  background-color: #FFFF;
+  background-color: #F7F7F7;
   font-family: "Montserrat", sans-serif;
+  color: #000000;
+  padding: 1%;
 }
 
 .menu_page {
-  background-color: #FFFF;
+  background-color: #10291D;
   font-family: "Montserrat", sans-serif;
+  color: #F7F7F7;
+  padding: 1%;
 }
 
 .about_us_page {
-  background-color: #FFFF;
+  background-color: #10291D;
   font-family: "Montserrat", sans-serif;
+  color: #F7F7F7;
+  padding: 1%;
 }
 
 .customer_comments_page {
-  background-color: #FFFF;
+  background-color: #F7F7F7;
   font-family: "Montserrat", sans-serif;
+  color: #000000;
+  padding: 1%;
 }
 
 button {
   font-family: "Montserrat", sans-serif;
+  margin-top: 0.5%;
+  margin-left: 0.5%;
+  margin-right: 0.5%;
 }

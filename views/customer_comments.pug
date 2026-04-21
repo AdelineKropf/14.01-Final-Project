@@ -6,6 +6,11 @@ block content
     h1.company_title= title
     h2 Customer Comments
 
+    form(method='POST' action='/create')
+      label(for='comment') Comment:
+      input(type='text', name='comment', id='comment', required)
+      button(type='submit') Submit Comment
+
     //- Creates the buttons to navigate to the other pages 
     footer
       button(type='button', class='goToMenu') Go to the Menu Page
