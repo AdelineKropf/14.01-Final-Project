@@ -17,10 +17,13 @@
   font-style: normal;
 }
 
-
-body {
-  padding: 50px;
+html, body {
+  /* padding: 0.125%; */
+  height: 100%;
+  margin: 0;
+  padding: 0;
   font: 14px "Montserrat", sans-serif;
+  min-height: 100vh;
 }
 
 a {
@@ -33,7 +36,8 @@ p {
 
 .company_title {
   font-family: "Italianno", cursive;
-  font-size: 250%;
+  font-size: 500%;
+  margin: 0;
 }
 
 .landing_page {
@@ -41,6 +45,8 @@ p {
   font-family: "Montserrat", sans-serif;
   color: #000000;
   padding: 1%;
+  min-height: 100vh;
+  box-sizing: border-box;
 }
 
 .menu_page {
@@ -48,6 +54,8 @@ p {
   font-family: "Montserrat", sans-serif;
   color: #F7F7F7;
   padding: 1%;
+  min-height: 100vh;
+  box-sizing: border-box;
 }
 
 .about_us_page {
@@ -55,6 +63,8 @@ p {
   font-family: "Montserrat", sans-serif;
   color: #F7F7F7;
   padding: 1%;
+  min-height: 100vh;
+  box-sizing: border-box;
 }
 
 .customer_comments_page {
@@ -62,6 +72,8 @@ p {
   font-family: "Montserrat", sans-serif;
   color: #000000;
   padding: 1%;
+  min-height: 100vh;
+  box-sizing: border-box;
 }
 
 button {
@@ -69,4 +81,49 @@ button {
   margin-top: 0.5%;
   margin-left: 0.5%;
   margin-right: 0.5%;
+  border-color: #f7c64a;
 }
+
+.landing_page button {
+  border-color: #10291D;
+  background-color: #F7F7F7;
+  color: #000000;
+}
+
+.menu_page button {
+  border-color: #F7F7F7;
+  background-color: #10291D;
+  color: #F7F7F7;
+}
+
+.about_us_page button {
+  border-color: #F7F7F7;
+  background-color: #10291D;
+  color: #F7F7F7;
+}
+
+.customer_comments_page button {
+  border-color: #10291D;
+  background-color: #F7F7F7;
+  color: #000000;
+}
+
+.header_container {
+  margin: 0;
+  display: flex;
+  align-items: center;   
+  gap: 20px;             
+}
+
+.dark_logo {
+  width: 10%;         
+  height: auto;
+}
+
+.light_logo {
+  width: 10%;          
+  height: auto;
+}
+
+
+
