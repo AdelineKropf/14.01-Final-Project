@@ -125,5 +125,7 @@ button {
   height: auto;
 }
 
-
+textarea {
+  min-width: 75%;
+}
 

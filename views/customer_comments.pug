@@ -8,10 +8,19 @@ block content
       h1.company_title= title
     h2 Customer Comments
 
+    // creates a textarea and submit button to write and submit comments
     form(method='POST' action='/create')
-      label(for='comment') Comment:
-      input(type='text', name='comment', id='comment', required)
-      button(type='submit') Submit Comment
+      textarea(name='comment', id='comment', placeholder='Write a comment', rows='5', required)
+      button(type='submit', id='submit_button') Submit Comment
+
+    //- Display existing comments
+    if comments && comments.length
+      ul
+        each c in comments
+          li= c.comment
+    else
+      p No comments yet.
+
 
     //- Creates the buttons to navigate to the other pages 
     footer

@@ -39,7 +39,7 @@ router.post('/create', function (req, res, next) {
         }
 
         console.log('Comment added successfully:', results);
-        res.redirect('/');
+        res.redirect('/customer_comments');
       }
     );
   } catch (error) {
@@ -81,9 +81,20 @@ router.get('/about_us', (req, res) => {
   res.render('about_us');
 });
 
-router.get('/customer_comments', (req, res) => {
-  res.render('customer_comments');
+router.get('/customer_comments', function (req, res) {
+  req.db.query('SELECT * FROM comments;', (err, results) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send("Error loading comments");
+    }
+
+    res.render('customer_comments', {
+      title: 'Customer Comments',
+      comments: results
+    });
+  });
 });
+
 
 router.get('/landing_page', (req, res) => {
   res.render('landing_page', { title: 'Downtown Donuts' });
