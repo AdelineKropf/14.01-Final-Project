@@ -18,7 +18,6 @@
 }
 
 html, body {
-  /* padding: 0.125%; */
   height: 100%;
   margin: 0;
   padding: 0;
@@ -81,7 +80,6 @@ button {
   margin-top: 0.5%;
   margin-left: 0.5%;
   margin-right: 0.5%;
-  border-color: #f7c64a;
 }
 
 .landing_page button {
@@ -128,4 +126,14 @@ button {
 textarea {
   min-width: 75%;
 }
+
+.about_us_paragraphs {
+  border: 0.15em solid #f7c64a;
+  border-radius: 2rem; 
+  padding-left: 1%;
+  padding-right: 1%;
+  margin-bottom: 1%;
+}
+
+
 
