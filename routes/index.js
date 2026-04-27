@@ -21,12 +21,23 @@ router.get('/', function (req, res, next) {
 
 /* CREATE comment */
 router.post('/create', function (req, res, next) {
-  const { comment } = req.body;
+  let { comment } = req.body;
 
   // Doesn't allow an empty comment to be submitted
   if (!comment.trim()) {
     return res.status(400).json({ error: "Comment cannot be empty" });
   }
+
+  // Doesn't let a comment over 300 be posted
+  if (comment.length > 300) {
+    return res.status(400).json({ error: "Comment cannot exceed 300 characters."});
+  }
+
+  // Basic XSS sanitization 
+  /* used assistance from Copilot */
+  comment = comment
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
 
   try {
     req.db.query(
@@ -47,30 +58,6 @@ router.post('/create', function (req, res, next) {
     res.status(500).send('Error adding comment');
   }
 });
-
-// /* DELETE comment */
-// router.post('/delete', function (req, res, next) {
-//   const { id } = req.body;
-
-//   try {
-//     req.db.query(
-//       'DELETE FROM comments WHERE id = ?;',
-//       [id],
-//       (err, results) => {
-//         if (err) {
-//           console.error('Error deleting comment:', err);
-//           return res.status(500).send('Error deleting comment');
-//         }
-
-//         console.log('Comment deleted successfully:', results);
-//         res.redirect('/');
-//       }
-//     );
-//   } catch (error) {
-//     console.error('Error deleting comment:', error);
-//     res.status(500).send('Error deleting comment');
-//   }
-// });
 
 /* PAGE ROUTES */
 router.get('/menu', (req, res) => {

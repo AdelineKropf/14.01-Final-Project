@@ -10,7 +10,7 @@ block content
 
     // creates a textarea and submit button to write and submit comments
     form(method='POST' action='/create')
-      textarea(name='comment', id='comment', placeholder='Write a comment', rows='5', required)
+      textarea(name='comment', id='comment', placeholder='Write a comment', maxlength="300", rows='3', required)
       button.submit_button(type='submit', id='submit_button') Submit Comment
 
     //- Display existing comments
@@ -36,8 +36,6 @@ block content
         form(method='GET', action='/customer_comments')
           input(type='hidden', name='limit', value=10)
           button(type='submit') See Less
-
-
 
     //- Creates the buttons to navigate to the other pages 
     footer

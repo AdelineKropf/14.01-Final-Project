@@ -115,7 +115,7 @@ button {
   margin: 0;
   display: flex;
   align-items: center;   
-  gap: 20px;             
+  gap: 20em;             
 }
 
 .dark_logo {
@@ -151,8 +151,8 @@ textarea {
   background: #10291D;
   border: 0.1rem solid #f7c64a;
   border-radius: 0.8rem;
-  padding: 1.2rem 1.4rem;
-  margin-bottom: 1.5rem;
+  padding: 0.7rem 0.8rem;
+  margin-bottom: 0.8rem;
   box-shadow: 0 0.2rem 0.4rem rgba(0,0,0,0.08);
   max-width: 90%;
 }
@@ -160,7 +160,7 @@ textarea {
 .comment_text {
   font-size: 1rem;
   color: #F7F7F7;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
   line-height: 130%;
 }
 
@@ -172,6 +172,14 @@ textarea {
 
 .pagination {
   display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  margin-left: 0.5%;
+  margin-right: 0.5%;
+}
+
+.pagination button {
+  margin-top: 0.5%;
   margin-left: 0.5%;
   margin-right: 0.5%;
 }
