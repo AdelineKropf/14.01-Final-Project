@@ -135,5 +135,32 @@ textarea {
   margin-bottom: 1%;
 }
 
+.customer_comments_page ul {
+  /* list-style attribute Source: https://www.w3schools.com/CSS/css_list.asp */
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0;
+}
 
+.customer_comments_page li {
+  background: #10291D;
+  border: 0.1rem solid #f7c64a;
+  border-radius: 0.8rem;
+  padding: 1.2rem 1.4rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 0.2rem 0.4rem rgba(0,0,0,0.08);
+  max-width: 90%;
+}
 
+.comment_text {
+  font-size: 1rem;
+  color: #F7F7F7;
+  margin-bottom: 0.5rem;
+  line-height: 130%;
+}
+
+.comment_time {
+  font-size: 0.85rem;
+  color: #f7c64a;
+  margin-top: 0.3rem;
+}
