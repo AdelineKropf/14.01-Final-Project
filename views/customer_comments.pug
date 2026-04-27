@@ -17,7 +17,9 @@ block content
     if comments && comments.length
       ul
         each c in comments
-          li= c.comment
+          li
+            .comment_time Posted #{c.timeAgo}
+            .comment_text= c.comment
     else
       p No comments yet.
 

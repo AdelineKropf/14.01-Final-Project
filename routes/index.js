@@ -81,17 +81,40 @@ router.get('/about_us', (req, res) => {
   res.render('about_us');
 });
 
+// Creates the text for how long ago the comment was posted 
+function formatTimeAgo(date) {
+  const now = new Date();
+  const diffMs = now - date;
+  const diffSec = Math.floor(diffMs / 1000);
+  const diffMin = Math.floor(diffSec / 60);
+  const diffHr  = Math.floor(diffMin / 60);
+  const diffDay = Math.floor(diffHr / 24);
+
+  if (diffSec < 60) return 'Just now';
+  if (diffMin < 60) return `${diffMin} minute(s) ago`;
+  if (diffHr  < 24) return `${diffHr} hour(s) ago`;
+  if (diffDay < 7)  return `${diffDay} day(s) ago`;
+
+  return date.toLocaleString();
+}
+
 router.get('/customer_comments', function (req, res) {
-  req.db.query('SELECT * FROM comments;', (err, results) => {
+  req.db.query('SELECT * FROM comments ORDER BY created_at DESC;', (err, results) => {
     if (err) {
       console.error(err);
       return res.status(500).send("Error loading comments");
     }
 
+    const comments = results.map(row => ({
+      ...row,
+      timeAgo: formatTimeAgo(new Date(row.created_at))
+    }));
+
     res.render('customer_comments', {
       title: 'Customer Comments',
-      comments: results
+      comments
     });
+
   });
 });
 
