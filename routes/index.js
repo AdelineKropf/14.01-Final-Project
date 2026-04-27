@@ -48,29 +48,29 @@ router.post('/create', function (req, res, next) {
   }
 });
 
-/* DELETE comment */
-router.post('/delete', function (req, res, next) {
-  const { id } = req.body;
+// /* DELETE comment */
+// router.post('/delete', function (req, res, next) {
+//   const { id } = req.body;
 
-  try {
-    req.db.query(
-      'DELETE FROM comments WHERE id = ?;',
-      [id],
-      (err, results) => {
-        if (err) {
-          console.error('Error deleting comment:', err);
-          return res.status(500).send('Error deleting comment');
-        }
+//   try {
+//     req.db.query(
+//       'DELETE FROM comments WHERE id = ?;',
+//       [id],
+//       (err, results) => {
+//         if (err) {
+//           console.error('Error deleting comment:', err);
+//           return res.status(500).send('Error deleting comment');
+//         }
 
-        console.log('Comment deleted successfully:', results);
-        res.redirect('/');
-      }
-    );
-  } catch (error) {
-    console.error('Error deleting comment:', error);
-    res.status(500).send('Error deleting comment');
-  }
-});
+//         console.log('Comment deleted successfully:', results);
+//         res.redirect('/');
+//       }
+//     );
+//   } catch (error) {
+//     console.error('Error deleting comment:', error);
+//     res.status(500).send('Error deleting comment');
+//   }
+// });
 
 /* PAGE ROUTES */
 router.get('/menu', (req, res) => {
@@ -98,26 +98,38 @@ function formatTimeAgo(date) {
   return date.toLocaleString();
 }
 
+/* Assistance from Copilot was used */
 router.get('/customer_comments', function (req, res) {
-  req.db.query('SELECT * FROM comments ORDER BY created_at DESC;', (err, results) => {
-    if (err) {
-      console.error(err);
-      return res.status(500).send("Error loading comments");
-    }
+  const limit = parseInt(req.query.limit) || 10;
 
-    const comments = results.map(row => ({
-      ...row,
-      timeAgo: formatTimeAgo(new Date(row.created_at))
-    }));
+  // Count total comments
+  req.db.query('SELECT COUNT(*) AS count FROM comments;', (err, countResult) => {
+    if (err) return res.status(500).send("Error counting comments");
 
-    res.render('customer_comments', {
-      title: 'Customer Comments',
-      comments
-    });
+    const totalComments = countResult[0].count;
 
+    // Fetch only the comments up to the limit
+    req.db.query(
+      'SELECT * FROM comments ORDER BY created_at DESC LIMIT ?;',
+      [limit],
+      (err, results) => {
+        if (err) return res.status(500).send("Error loading comments");
+
+        const comments = results.map(row => ({
+          ...row,
+          timeAgo: formatTimeAgo(new Date(row.created_at))
+        }));
+
+        res.render('customer_comments', {
+          title: 'Customer Comments',
+          comments,
+          limit,
+          totalComments
+        });
+      }
+    );
   });
 });
-
 
 router.get('/landing_page', (req, res) => {
   res.render('landing_page', { title: 'Downtown Donuts' });

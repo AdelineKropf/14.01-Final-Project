@@ -1,3 +1,4 @@
+/* Maybe add some fun cusor stuff */
 
 /* Created with help from Copilot */
 @font-face {
@@ -106,6 +107,10 @@ button {
   color: #000000;
 }
 
+.submit_button {
+  display: flex;
+}
+
 .header_container {
   margin: 0;
   display: flex;
@@ -164,3 +169,10 @@ textarea {
   color: #f7c64a;
   margin-top: 0.3rem;
 }
+
+.pagination {
+  display: flex;
+  margin-left: 0.5%;
+  margin-right: 0.5%;
+}
+

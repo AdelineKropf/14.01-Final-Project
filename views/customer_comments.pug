@@ -11,7 +11,7 @@ block content
     // creates a textarea and submit button to write and submit comments
     form(method='POST' action='/create')
       textarea(name='comment', id='comment', placeholder='Write a comment', rows='5', required)
-      button(type='submit', id='submit_button') Submit Comment
+      button.submit_button(type='submit', id='submit_button') Submit Comment
 
     //- Display existing comments
     if comments && comments.length
@@ -22,6 +22,21 @@ block content
             .comment_text= c.comment
     else
       p No comments yet.
+  
+    //- Load More / See Less buttons
+    .pagination
+      // Load More (only if more comments exist)
+      if limit < totalComments
+        form(method='GET', action='/customer_comments')
+          input(type='hidden', name='limit', value=limit + 10)
+          button(type='submit') Load More
+
+      // See Less (only if limit > 10)
+      if limit > 10
+        form(method='GET', action='/customer_comments')
+          input(type='hidden', name='limit', value=10)
+          button(type='submit') See Less
+
 
 
     //- Creates the buttons to navigate to the other pages 
