@@ -76,32 +76,32 @@ p {
   box-sizing: border-box;
 }
 
-button {
+a {
   font-family: "Montserrat", sans-serif;
   margin-top: 0.5%;
   margin-left: 0.5%;
   margin-right: 0.5%;
 }
 
-.landing_page button {
+.landing_page a {
   border-color: #10291D;
   background-color: #F7F7F7;
   color: #000000;
 }
 
-.menu_page button {
+.menu_page a {
   border-color: #F7F7F7;
   background-color: #10291D;
   color: #F7F7F7;
 }
 
-.about_us_page button {
+.about_us_page a {
   border-color: #F7F7F7;
   background-color: #10291D;
   color: #F7F7F7;
 }
 
-.customer_comments_page button {
+.customer_comments_page a {
   border-color: #10291D;
   background-color: #F7F7F7;
   color: #000000;
@@ -184,3 +184,19 @@ textarea {
   margin-right: 0.5%;
 }
 
+a.nav_button,
+a.goToLandingPage {
+  display: inline-block;
+  padding: 0.8rem 1.4rem;
+  border: 0.15rem solid currentColor;
+  border-radius: 0.6rem;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+a.nav_button:hover,
+a.nav_button:focus-visible {
+  outline: 0.2rem solid #f7c64a;
+  outline-offset: 0.1rem;
+}

@@ -1,30 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => { // Source: https://developer.mozilla.org/en-US/docs/Web/API/Document/DOMContentLoaded_event
 
-    const menuBtn = document.querySelector('.goToMenu');
-    if (menuBtn) {
-        menuBtn.addEventListener('click', () => {
-            window.location.href = '/menu';
-        });
-    }
+    // No double click
+    const form = document.querySelector('form');
+    const submitBtn = document.querySelector('#submit_button');
 
-    const aboutBtn = document.querySelector('.goToAboutUs');
-    if (aboutBtn) {
-        aboutBtn.addEventListener('click', () => {
-            window.location.href = '/about_us';
-        });
-    }
-
-    const commentsBtn = document.querySelector('.goToCustomerComments');
-    if (commentsBtn) {
-        commentsBtn.addEventListener('click', () => {
-            window.location.href = '/customer_comments';
-        });
-    }
-
-    const landingBtn = document.querySelector('.goToLandingPage');
-    if (landingBtn) {
-        landingBtn.addEventListener('click', () => {
-            window.location.href = '/landing_page';
+    if (form && submitBtn) {
+        form.addEventListener('submit', () => {
+            submitBtn.disabled = true;
+            submitBtn.textContent = "Submitting...";
         });
     }
 

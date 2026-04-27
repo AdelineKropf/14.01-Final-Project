@@ -46,7 +46,7 @@ router.post('/create', function (req, res, next) {
       (err, results) => {
         if (err) {
           console.error('Error adding comment:', err);
-          return res.status(500).send('Error adding comment');
+          return res.status(500).json({ error: "Something went wrong. Please try again." });
         }
 
         console.log('Comment added successfully:', results);
