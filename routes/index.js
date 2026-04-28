@@ -1,22 +1,41 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
-router.get('/', function (req, res, next) {
-  try {
-    req.db.query('SELECT * FROM comments;', (err, results) => {
-      if (err) {
-        console.error('Error fetching comments:', err);
-        return res.status(500).send('Error fetching comments');
-      }
+/* Used help from ChatGPT */
+function loadCommentsAndRender(req, res, errorMessage) {
+  const limit = 10;
 
-      // Upon loading the app displays the landing page
-      res.render('landing_page');
-    });
-  } catch (error) {
-    console.error('Error fetching items:', error);
-    res.status(500).send('Error fetching items');
-  }
+  req.db.query('SELECT COUNT(*) AS count FROM comments;', (err, countResult) => {
+    if (err) return res.status(500).send("Error counting comments");
+
+    const totalComments = countResult[0].count;
+
+    req.db.query(
+      'SELECT * FROM comments ORDER BY created_at DESC LIMIT ?;',
+      [limit],
+      (err, results) => {
+        if (err) return res.status(500).send("Error loading comments");
+
+        const comments = results.map(row => ({
+          ...row,
+          timeAgo: formatTimeAgo(new Date(row.created_at))
+        }));
+
+        res.render('customer_comments', {
+          title: 'Downtown Donuts',
+          error: errorMessage,
+          comments,
+          limit,
+          totalComments
+        });
+      }
+    );
+  });
+}
+
+/* GET home page. */
+router.get('/', function (req, res) {
+  res.render('landing_page');
 });
 
 /* CREATE comment */
@@ -24,13 +43,14 @@ router.post('/create', function (req, res, next) {
   let { comment } = req.body;
 
   // Doesn't allow an empty comment to be submitted
-  if (!comment.trim()) {
-    return res.status(400).json({ error: "Comment cannot be empty" });
+  comment = comment.trim();
+  if (!comment) {
+    return loadCommentsAndRender(req, res, "Comment cannot be empty");
   }
 
-  // Doesn't let a comment over 300 be posted
-  if (comment.length > 300) {
-    return res.status(400).json({ error: "Comment cannot exceed 300 characters."});
+  // Doesn't let a comment over 255 be posted
+  if (comment.length > 255) {
+    return loadCommentsAndRender(req, res, "Comment cannot exceed 255 characters.");
   }
 
   // Basic XSS sanitization 
@@ -46,7 +66,7 @@ router.post('/create', function (req, res, next) {
       (err, results) => {
         if (err) {
           console.error('Error adding comment:', err);
-          return res.status(500).json({ error: "Something went wrong. Please try again." });
+          return loadCommentsAndRender(req, res, "Failed to save comment. Please try again.");
         }
 
         console.log('Comment added successfully:', results);
@@ -55,7 +75,7 @@ router.post('/create', function (req, res, next) {
     );
   } catch (error) {
     console.error('Error adding comment:', error);
-    res.status(500).send('Error adding comment');
+    return loadCommentsAndRender(req, res, "Something went wrong. Please try again.");
   }
 });
 
@@ -78,11 +98,11 @@ function formatTimeAgo(date) {
   const diffDay = Math.floor(diffHr / 24);
 
   if (diffSec < 60) return 'Just now';
-  if (diffMin < 60) return `${diffMin} minute(s) ago`;
-  if (diffHr  < 24) return `${diffHr} hour(s) ago`;
-  if (diffDay < 7)  return `${diffDay} day(s) ago`;
+  if (diffMin < 60) return `${diffMin} minute${diffMin !== 1 ? 's' : ''} ago`;
+  if (diffHr < 24) return `${diffHr} hour${diffHr !== 1 ? 's' : ''} ago`;
+  if (diffDay < 7) return `${diffDay} day${diffDay !== 1 ? 's' : ''} ago`;
 
-  return date.toLocaleString();
+  return date.toLocaleDateString();
 }
 
 /* Assistance from Copilot was used */
@@ -108,7 +128,7 @@ router.get('/customer_comments', function (req, res) {
         }));
 
         res.render('customer_comments', {
-          title: 'Customer Comments',
+          title: 'Downtown Donuts',
           comments,
           limit,
           totalComments

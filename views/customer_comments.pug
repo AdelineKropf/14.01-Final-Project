@@ -10,7 +10,7 @@ block content
 
     // creates a textarea and submit button to write and submit comments
     form(method='POST' action='/create')
-      textarea(name='comment', id='comment', placeholder='Write a comment', maxlength="300", rows='3', required)
+      textarea(name='comment', id='comment', placeholder='Write a comment', maxlength="255", rows='3', required)
       button.submit_button(type='submit', id='submit_button') Submit Comment
 
     //- Display existing comments
