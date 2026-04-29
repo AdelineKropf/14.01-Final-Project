@@ -27,7 +27,7 @@ html, body {
 }
 
 a {
-  color: #00B7FF;
+  transition: background-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 p {
@@ -84,27 +84,27 @@ a {
 }
 
 .landing_page a {
-  border-color: #10291D;
-  background-color: #F7F7F7;
-  color: #000000;
+  border-color: #F7F7F7;
+  background-color: #10291D;
+  color: #F7F7F7;
 }
 
 .menu_page a {
-  border-color: #F7F7F7;
-  background-color: #10291D;
-  color: #F7F7F7;
-}
-
-.about_us_page a {
-  border-color: #F7F7F7;
-  background-color: #10291D;
-  color: #F7F7F7;
-}
-
-.customer_comments_page a {
   border-color: #10291D;
   background-color: #F7F7F7;
   color: #000000;
+}
+
+.about_us_page a {
+  border-color: #10291D;
+  background-color: #F7F7F7;
+  color: #000000;
+}
+
+.customer_comments_page a {
+  border-color: #F7F7F7;
+  background-color: #10291D;
+  color: #F7F7F7;
 }
 
 .submit_button {
@@ -184,8 +184,7 @@ textarea {
   margin-right: 0.5%;
 }
 
-a.nav_button,
-a.goToLandingPage {
+a.nav_button {
   display: inline-block;
   padding: 0.8rem 1.4rem;
   border: 0.15rem solid currentColor;
@@ -199,4 +198,38 @@ a.nav_button:hover,
 a.nav_button:focus-visible {
   outline: 0.2rem solid #f7c64a;
   outline-offset: 0.1rem;
+  transform: translateY(-0.1rem);
 }
+
+/* Delivery buttons: Uber Eats / DoorDash */
+.delivery_buttons a {
+  display: inline-block;
+  font-family: "Montserrat", sans-serif;
+  padding: 0.8rem 1.4rem;
+  margin: 0.5rem;
+  border-radius: 0.8rem;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.landing_page .delivery_buttons a {
+  border: 0.15rem solid #F7F7F7;
+  background-color: #10291D;
+  color: #F7F7F7;
+}
+
+.menu_page .delivery_buttons a {
+  border: 0.15rem solid #10291D;
+  background-color: #F7F7F7;
+  color: #000000;
+}
+
+.delivery_buttons a:hover,
+.delivery_buttons a:focus-visible {
+  transform: translateY(-0.1rem);
+  box-shadow: 0 0.3rem 0.6rem rgba(0, 0, 0, 0.25);
+  outline: 0.15rem solid #f7c64a;
+  outline-offset: 0.15rem;
+}
+
