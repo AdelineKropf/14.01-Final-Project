@@ -36,7 +36,8 @@ p {
 
 .company_title {
   font-family: "Italianno", cursive;
-  font-size: 500%;
+  /* Source for clamp: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/clamp */
+  font-size: clamp(2.5rem, 6vw, 5rem);
   margin: 0;
 }
 
@@ -112,19 +113,18 @@ a {
 }
 
 .header_container {
-  margin: 0;
   display: flex;
-  align-items: center;   
-  gap: 20em;             
+  align-items: center;
+  justify-content: flex-start; 
+  flex-wrap: wrap;
+  gap: 1.5rem;
 }
 
-.dark_logo {
-  width: 10%;         
-  height: auto;
-}
 
+.dark_logo,
 .light_logo {
-  width: 10%;          
+  /* Source for clamp: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/clamp */
+  width: clamp(80px, 10vw, 140px);
   height: auto;
 }
 
@@ -202,6 +202,12 @@ a.nav_button:focus-visible {
 }
 
 /* Delivery buttons: Uber Eats / DoorDash */
+.delivery_buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
 .delivery_buttons a {
   display: inline-block;
   font-family: "Montserrat", sans-serif;
@@ -231,6 +237,12 @@ a.nav_button:focus-visible {
   box-shadow: 0 0.3rem 0.6rem rgba(0, 0, 0, 0.25);
   outline: 0.15rem solid #f7c64a;
   outline-offset: 0.15rem;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 0.2rem solid #f7c64a;
+  outline-offset: 0.2rem;
 }
 
 /* Section headers */
@@ -299,3 +311,130 @@ a.nav_button:focus-visible {
   text-align: center;
   color: #F7F7F7;           
 }
+
+/* Used Copilot assistance to create media queries */
+/* MOBILE — Small phones (under 480px) */
+@media (max-width: 480px) {
+
+  .company_title {
+    font-size: 300%;
+  }
+
+  .header_container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .dark_logo,
+  .light_logo {
+    width: 35%;
+  }
+
+  a.nav_button {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .menu_item {
+    padding: 0.45rem 0.6rem;
+    border-radius: 0.5rem;
+    gap: 0.1rem;
+  }
+
+  .menu_item h3 {
+    font-size: 1.05rem;
+  }
+
+  .menu_item .price {
+    font-size: 0.95rem;
+  }
+
+  .menu_item .description {
+    font-size: 0.85rem;
+    line-height: 1.15;
+  }
+
+  .delivery_buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .delivery_buttons a {
+    width: 90%;
+    text-align: center;
+  }
+}
+
+
+/* MOBILE — Standard phones (under 600px) */
+@media (max-width: 600px) {
+
+  .menu_page,
+  .landing_page,
+  .about_us_page,
+  .customer_comments_page {
+    padding: 1rem;
+  }
+
+  .menu_section {
+    font-size: 1.4rem;
+  }
+
+  .section_subtitle {
+    font-size: 1rem;
+  }
+
+  .menu_item {
+    padding: 0.5rem 0.7rem;
+    border-radius: 0.6rem;
+  }
+
+  .menu_item h3 {
+    font-size: 1.15rem;
+  }
+
+  .menu_item .description {
+    font-size: 0.9rem;
+  }
+
+  textarea {
+    min-width: 100%;
+  }
+
+  .pagination {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+}
+
+/* TABLETS — Medium screens (under 900px) */
+@media (max-width: 900px) {
+
+  .header_container {
+    gap: 5rem;
+  }
+
+  .menu_item {
+    padding: 0.6rem 0.8rem;
+  }
+
+  .menu_item h3 {
+    font-size: 1.2rem;
+  }
+
+  .menu_item .description {
+    font-size: 0.95rem;
+  }
+
+  .delivery_buttons {
+    justify-content: center;
+  }
+}
+

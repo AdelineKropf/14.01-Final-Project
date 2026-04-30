@@ -16,4 +16,5 @@ All sources are cited next to where they are used as well
 - Copilot 
 - https://www.1001fonts.com/italianno-font.html 
 - https://www.1001fonts.com/montserrat-font.html
-- Source: https://www.w3schools.com/CSS/css_list.asp
+- https://www.w3schools.com/CSS/css_list.asp
+- https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/clamp
