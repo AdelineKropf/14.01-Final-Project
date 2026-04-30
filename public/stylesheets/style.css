@@ -1,4 +1,4 @@
-/* Maybe add some fun cusor stuff */
+/* Maybe add some fun cursor stuff */
 
 /* Created with help from Copilot */
 @font-face {
@@ -75,6 +75,11 @@ p {
   padding: 1%;
   min-height: 100vh;
   box-sizing: border-box;
+}
+
+label {
+  font-family: "Montserrat", sans-serif;
+  display: flex;
 }
 
 a {
@@ -437,4 +442,3 @@ button:focus-visible {
     justify-content: center;
   }
 }
-

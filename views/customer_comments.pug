@@ -4,12 +4,13 @@ block content
   //- Source: https://www.geeksforgeeks.org/node-js/tags-in-pug-view-engine/
   .customer_comments_page
     .header_container
-      img.light_logo(src="/images/Downtown_Donuts_Light_Background.png" alt="Logo")
+      img.light_logo(src="/images/Downtown_Donuts_Light_Background.png", alt="Downtown Donuts logo")
       h1.company_title= title
     h2 Customer Comments
 
     // creates a textarea and submit button to write and submit comments
     form(method='POST' action='/create')
+      label(for='comment') Your Comment
       textarea(name='comment', id='comment', placeholder='Write a comment', maxlength="255", rows='3', required)
       button.submit_button(type='submit', id='submit_button') Submit Comment
 
