@@ -2,17 +2,23 @@ extends layout
 
 block content
   // Source: https://www.geeksforgeeks.org/node-js/tags-in-pug-view-engine/
+  //- Entire Menu page wrapper
   .menu_page
+
+    //- Header with the logo & title 
     .header_container
       img.dark_logo(src="/images/Downtown_Donuts_Dark_Background.png", alt="Downtown Donuts logo")
       h1.company_title= title
+    
+    //- Page heading
     h2 Menu
 
     //- Used Copilot Assistance to create the menu off of the provided pdf
-    // SIGNATURE DONUTS
+    // SIGNATURE DONUTS SECTION
     h2.menu_section SIGNATURE DONUTS
       p.section_subtitle Handcrafted fresh every morning
 
+      //- List of signature donut items
       .menu_items
         .menu_item
           h3 Classic Glazed
@@ -64,18 +70,20 @@ block content
           span.price $3.75
           p.description Peanut butter glaze with raspberry jam filling
 
-      // DONUT HOLES
+      // DONUT HOLES SECTION
       h2.menu_section DONUT HOLES
       p.section_subtitle Glazed, Chocolate, or Cinnamon Sugar
       p.section_subtitle Half Dozen $4.50 | Dozen $7.99
       p.description Mix and match flavors!
 
-      // DRINKS
+      // DRINKS SECTION
       h2.menu_section DRINKS & MORE
 
+      //- Coffee subcategory
       h3.subheading COFFEE
       p.section_subtitle Locally roasted beans. Always fresh.
 
+      //- Coffee menu items
       .menu_items
         .menu_item
           h3 Drip Coffee
@@ -117,12 +125,12 @@ block content
           span.price SM $4.50 | MD $5.00 | LG $5.50
           p.description Spiced chai with vanilla and steamed milk
 
-      // ADD-ONS
+      // ADD-ONS SECTION
       h3.subheading ADD‑ONS
       p.description Extra shot +$0.75 | Flavored syrup +$0.50 | Oat/Almond/Soy milk +$0.60
       p.description Whipped cream +$0.50 | Cold foam +$0.75
 
-      // OTHER DRINKS
+      // OTHER DRINKS SECTION
       h3.subheading OTHER DRINKS
       .menu_items
         .menu_item
@@ -149,7 +157,7 @@ block content
           h3 Apple Cider (Seasonal)
           span.price $3.50
 
-      // BREAKFAST BITES
+      // BREAKFAST BITES SECTION
       h2.menu_section BREAKFAST BITES
       .menu_items
         .menu_item
@@ -168,14 +176,15 @@ block content
           h3 Yogurt Parfait
           span.price $4.50
 
+      //- Footer note for catering 
       p.footer_note Catering available! Call (555) 867‑5309 or email catering@downtowndonuts.com
 
-    // Links to where to order
+    //- Links to where to order (UberEats & DoorDash)
     .delivery_buttons
       a(href='https://www.ubereats.com/') Go to Uber Eats
       a(href='https://www.doordash.com/') Go to DoorDash
     
-    //- Creates the buttons to navigate to the other pages 
+    //- Buttons to navigate to the other pages 
     footer
       a(href='/landing_page', class='nav_button') Go to the Landing Page
       a(href='/about_us', class='nav_button') Go to the About Us Page

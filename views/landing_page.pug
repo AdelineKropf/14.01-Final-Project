@@ -2,10 +2,15 @@ extends layout
 
 block content
   // Source: https://www.geeksforgeeks.org/node-js/tags-in-pug-view-engine/
+  //- Entire Landing page wrapper
   .landing_page
+
+    //- Header with the logo & title 
     .header_container
       img.light_logo(src="/images/Downtown_Donuts_Light_Background.png", alt="Downtown Donuts logo")
       h1.company_title= title
+
+    //- Page heading
     h2 Welcome to #{title}
 
     //- Description of the Company 
@@ -13,12 +18,12 @@ block content
     | We deeply value our place in the community and are dedicated to producing delicious donuts
     | in a comforting atmosphere.
 
-    // Links to where to order
+    //- Links to where to order (UberEats & DoorDash)
     .delivery_buttons
       a(href='https://www.ubereats.com/') Go to Uber Eats
       a(href='https://www.doordash.com/') Go to DoorDash
 
-    //- Creates the buttons to navigate to the other pages 
+    //- Buttons to navigate to the other pages 
     footer
       a(href='/menu', class='nav_button') Go to the Menu Page
       a(href='/about_us', class='nav_button') Go to the About Us Page

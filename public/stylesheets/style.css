@@ -1,6 +1,7 @@
-/* Maybe add some fun cursor stuff */
+/* FONT IMPORT */
 
 /* Created with help from Copilot */
+/* Italianno Font (used for the title) */
 @font-face {
   /* I got the font file from https://www.1001fonts.com/italianno-font.html */
   font-family: "Italianno";
@@ -10,6 +11,7 @@
 }
 
 /* Created with help from Copilot */
+/* Montserrat Font (used for everything but the title) */
 @font-face {
   /* I got the font file from https://www.1001fonts.com/montserrat-font.html */
   font-family: "Montserrat";
@@ -17,6 +19,8 @@
   font-weight: 400;
   font-style: normal;
 }
+
+/* GLOBAL ELEMENT STYLES */
 
 html, body {
   height: 100%;
@@ -26,20 +30,98 @@ html, body {
   min-height: 100vh;
 }
 
-a {
-  transition: background-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
-}
-
+/* Sets the default paragraph font as Montserrat */
 p {
   font-family: "Montserrat", sans-serif;
 }
 
-.company_title {
-  font-family: "Italianno", cursive;
-  /* Source for clamp: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/clamp */
-  font-size: clamp(2.5rem, 6vw, 5rem);
-  margin: 0;
+/* TEXT AREA (CUSTOMER COMMENTS INPUT) */
+
+textarea {
+  background-color: #10291D;
+  color: #F7F7F7;
+  font-family: "Montserrat", sans-serif;
+  width: 90%;
+  border: 0.15em solid #f7c64a;
+  border-radius: 0.35rem;
 }
+
+/* Placeholder Styling  */
+textarea::placeholder {
+  color: #8f8f8f;   
+}
+
+/* Hover + focus outline for accessibility */
+textarea:hover,
+textarea:focus-visible {
+  border: 0.2em dashed #f7c64a
+}
+
+/* BUTTONS & LINKS */
+
+/* Smooth hover transitions for all links */
+a {
+  transition: background-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Shared button & link spacing */
+button, a {
+  font-family: "Montserrat", sans-serif;
+  margin-top: 0.5%;
+  margin-left: 0.5%;
+  margin-right: 0.5%;
+}
+
+/* Navigation button styling changes by page background */
+.landing_page a {
+  border-color: #F7F7F7;
+  background-color: #10291D;
+  color: #F7F7F7;
+}
+
+.menu_page a,
+.about_us_page a {
+  border-color: #10291D;
+  background-color: #F7F7F7;
+  color: #000000;
+}
+
+.customer_comments_page a, 
+.customer_comments_page button {
+  border-color: #F7F7F7;
+  background-color: #10291D;
+  color: #F7F7F7;
+}
+
+/* Submit Button Layout */
+.submit_button {
+  display: flex;
+  border-radius: 0.35rem;
+  cursor: pointer;
+}
+
+/* Navigation button base styling */
+a.nav_button {
+  display: inline-block;
+  padding: 0.8rem 1.4rem;
+  border: 0.15rem solid currentColor;
+  border-radius: 0.6rem;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Hover and focus effects for all buttons */
+button:hover,
+button:focus-visible,
+a.nav_button:hover,
+a.nav_button:focus-visible {
+  outline: 0.2rem solid #f7c64a;
+  outline-offset: 0.1rem;
+  transform: translateY(-0.1rem);
+}
+
+/* PAGE BACKGROUNDS */
 
 .landing_page {
   background-color: #F7F7F7;
@@ -50,15 +132,7 @@ p {
   box-sizing: border-box;
 }
 
-.menu_page {
-  background-color: #10291D;
-  font-family: "Montserrat", sans-serif;
-  color: #F7F7F7;
-  padding: 1%;
-  min-height: 100vh;
-  box-sizing: border-box;
-}
-
+.menu_page,
 .about_us_page {
   background-color: #10291D;
   font-family: "Montserrat", sans-serif;
@@ -77,44 +151,13 @@ p {
   box-sizing: border-box;
 }
 
-label {
-  font-family: "Montserrat", sans-serif;
-  display: flex;
-}
+/* HEADER & LOGO */
 
-a {
-  font-family: "Montserrat", sans-serif;
-  margin-top: 0.5%;
-  margin-left: 0.5%;
-  margin-right: 0.5%;
-}
-
-.landing_page a {
-  border-color: #F7F7F7;
-  background-color: #10291D;
-  color: #F7F7F7;
-}
-
-.menu_page a {
-  border-color: #10291D;
-  background-color: #F7F7F7;
-  color: #000000;
-}
-
-.about_us_page a {
-  border-color: #10291D;
-  background-color: #F7F7F7;
-  color: #000000;
-}
-
-.customer_comments_page a {
-  border-color: #F7F7F7;
-  background-color: #10291D;
-  color: #F7F7F7;
-}
-
-.submit_button {
-  display: flex;
+.company_title {
+  font-family: "Italianno", cursive;
+  /* Source for clamp: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/clamp */
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  margin: 0;
 }
 
 .header_container {
@@ -125,7 +168,7 @@ a {
   gap: 1.5rem;
 }
 
-
+/* Responsive Logo sizing */
 .dark_logo,
 .light_logo {
   /* Source for clamp: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/clamp */
@@ -133,9 +176,12 @@ a {
   height: auto;
 }
 
-textarea {
-  min-width: 75%;
+label {
+  font-family: "Montserrat", sans-serif;
+  display: flex;
 }
+
+/* ABOUT US PAGE STYLING */
 
 .about_us_paragraphs {
   border: 0.15em solid #f7c64a;
@@ -145,11 +191,13 @@ textarea {
   margin-bottom: 1%;
 }
 
+/* CUSTOMER COMMENTS LIST */
+
 .customer_comments_page ul {
   /* list-style attribute Source: https://www.w3schools.com/CSS/css_list.asp */
   list-style: none;
   padding: 0;
-  margin: 2rem 0;
+  margin: 1.1rem 0 0.5rem 0;
 }
 
 .customer_comments_page li {
@@ -175,6 +223,7 @@ textarea {
   margin-top: 0.3rem;
 }
 
+/* Pagination buttons */
 .pagination {
   display: flex;
   flex-direction: row;
@@ -187,26 +236,12 @@ textarea {
   margin-top: 0.5%;
   margin-left: 0.5%;
   margin-right: 0.5%;
-}
-
-a.nav_button {
-  display: inline-block;
-  padding: 0.8rem 1.4rem;
-  border: 0.15rem solid currentColor;
-  border-radius: 0.6rem;
-  text-decoration: none;
-  font-weight: 600;
+  border-radius: 0.35rem;
   cursor: pointer;
 }
 
-a.nav_button:hover,
-a.nav_button:focus-visible {
-  outline: 0.2rem solid #f7c64a;
-  outline-offset: 0.1rem;
-  transform: translateY(-0.1rem);
-}
+/* DELIVERY BUTTONS */
 
-/* Delivery buttons: Uber Eats / DoorDash */
 .delivery_buttons {
   display: flex;
   flex-wrap: wrap;
@@ -224,6 +259,7 @@ a.nav_button:focus-visible {
   cursor: pointer;
 }
 
+/* Page specific delivery button colors */
 .landing_page .delivery_buttons a {
   border: 0.15rem solid #F7F7F7;
   background-color: #10291D;
@@ -236,6 +272,7 @@ a.nav_button:focus-visible {
   color: #000000;
 }
 
+/* Hover & focus effects */
 .delivery_buttons a:hover,
 .delivery_buttons a:focus-visible {
   transform: translateY(-0.1rem);
@@ -244,13 +281,8 @@ a.nav_button:focus-visible {
   outline-offset: 0.15rem;
 }
 
-a:focus-visible,
-button:focus-visible {
-  outline: 0.2rem solid #f7c64a;
-  outline-offset: 0.2rem;
-}
+/* MENU PAGE STYLING */
 
-/* Section headers */
 .menu_section {
   font-size: 1.8rem;
   margin-top: 1rem;
@@ -317,7 +349,9 @@ button:focus-visible {
   color: #F7F7F7;           
 }
 
+/* RESPONSIVE DESIGN */
 /* Used Copilot assistance to create media queries */
+
 /* MOBILE — Small phones (under 480px) */
 @media (max-width: 480px) {
 

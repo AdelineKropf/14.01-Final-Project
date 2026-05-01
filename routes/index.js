@@ -1,26 +1,34 @@
+// Express router for Downtown Donuts application
+// Handles page routing, comment creation, validation, and database queries
+
 var express = require('express');
 var router = express.Router();
 
 /* Used help from ChatGPT */
+// Helper Function: used to load comments & render page with optical error
 function loadCommentsAndRender(req, res, errorMessage) {
-  const limit = 10;
+  const limit = 10; // Default number of comments to show
 
+  // Count total comments in the database
   req.db.query('SELECT COUNT(*) AS count FROM comments;', (err, countResult) => {
     if (err) return res.status(500).send("Error counting comments");
 
     const totalComments = countResult[0].count;
 
+    // Fetch the most recent comments up to the limit
     req.db.query(
       'SELECT * FROM comments ORDER BY created_at DESC LIMIT ?;',
       [limit],
       (err, results) => {
         if (err) return res.status(500).send("Error loading comments");
 
+        // Add formatted "time ago" text to each comment
         const comments = results.map(row => ({
           ...row,
           timeAgo: formatTimeAgo(new Date(row.created_at))
         }));
 
+        // Render the comments page with data + optional error message
         res.render('customer_comments', {
           title: 'Downtown Donuts',
           error: errorMessage,
@@ -33,7 +41,7 @@ function loadCommentsAndRender(req, res, errorMessage) {
   });
 }
 
-/* GET home page. */
+/* GET home/landing page. */
 router.get('/', function (req, res) {
   res.render('landing_page');
 });
@@ -42,23 +50,24 @@ router.get('/', function (req, res) {
 router.post('/create', function (req, res, next) {
   let { comment } = req.body;
 
-  // Doesn't allow an empty comment to be submitted
+  // Trim whitespace to prevent and empty comment from being submitted 
   comment = comment.trim();
   if (!comment) {
     return loadCommentsAndRender(req, res, "Comment cannot be empty");
   }
 
-  // Doesn't let a comment over 255 be posted
+  // Enforce 255‑character limit (matches database schema)
   if (comment.length > 255) {
     return loadCommentsAndRender(req, res, "Comment cannot exceed 255 characters.");
   }
 
-  // Basic XSS sanitization 
   /* used assistance from Copilot */
+  // Basic XSS sanitization 
   comment = comment
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;");
 
+  // Insert the sanitized comment into the database
   try {
     req.db.query(
       'INSERT INTO comments (comment) VALUES (?);',
@@ -88,7 +97,7 @@ router.get('/about_us', (req, res) => {
   res.render('about_us');
 });
 
-// Creates the text for how long ago the comment was posted 
+// Helper Function: used to convert timestamps into "time ago" text
 function formatTimeAgo(date) {
   const now = new Date();
   const diffMs = now - date;
@@ -105,7 +114,8 @@ function formatTimeAgo(date) {
   return date.toLocaleDateString();
 }
 
-/* Assistance from Copilot was used */
+/* Assistance from Copilot was used */ 
+/* GET customer comments page */
 router.get('/customer_comments', function (req, res) {
   const limit = parseInt(req.query.limit) || 10;
 
@@ -138,6 +148,7 @@ router.get('/customer_comments', function (req, res) {
   });
 });
 
+/* GET landing page*/
 router.get('/landing_page', (req, res) => {
   res.render('landing_page', { title: 'Downtown Donuts' });
 });

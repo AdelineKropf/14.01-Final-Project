@@ -2,43 +2,54 @@ extends layout
 
 block content
   //- Source: https://www.geeksforgeeks.org/node-js/tags-in-pug-view-engine/
+  //- Entire Customer Comments page wrapper
   .customer_comments_page
+
+    //- Header with the logo & title 
     .header_container
       img.light_logo(src="/images/Downtown_Donuts_Light_Background.png", alt="Downtown Donuts logo")
       h1.company_title= title
+    
+    //- Page heading
     h2 Customer Comments
 
-    // creates a textarea and submit button to write and submit comments
+    // Creates a textarea and submit button to write and submit comments
     form(method='POST' action='/create')
-      label(for='comment') Your Comment
+      // Label for the textarea for accessibility 
+      label(for='comment') Your Comment 
+      //- Area to write a comment
       textarea(name='comment', id='comment', placeholder='Write a comment', maxlength="255", rows='3', required)
+      //- Submit button for posting a comment
       button.submit_button(type='submit', id='submit_button') Submit Comment
 
-    //- Display existing comments
+    //- Display existing comments (if any exist)
     if comments && comments.length
       ul
         each c in comments
           li
+            //- Timestamp
             .comment_time Posted #{c.timeAgo}
+            //- Actual comment text
             .comment_text= c.comment
     else
+      //- Empty state message for when there aren't any comments yet
       p.empty_state Be the first to leave a comment 🍩
   
-    //- Load More / See Less buttons
+    //- Pagination controls (Load More / See Less buttons)
     .pagination
-      // Load More (only if more comments exist)
+      // Load More (only shown if more comments exist)
       if limit < totalComments
         form(method='GET', action='/customer_comments')
           input(type='hidden', name='limit', value=limit + 10)
           button(type='submit') Load More
 
-      // See Less (only if limit > 10)
+      // See Less (only shown if user has expanded past 10)
       if limit > 10
         form(method='GET', action='/customer_comments')
           input(type='hidden', name='limit', value=10)
           button(type='submit') See Less
 
-    //- Creates the buttons to navigate to the other pages 
+    //- Buttons to navigate to the other pages 
     footer
       a(href='/menu', class='nav_button') Go to the Menu Page
       a(href='/about_us', class='nav_button') Go to the About Us Page
